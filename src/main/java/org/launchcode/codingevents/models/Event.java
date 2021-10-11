@@ -2,9 +2,7 @@ package org.launchcode.codingevents.models;
 
 import java.util.Objects;
 
-/**
- * Created by Chris Bay
- */
+
 public class Event {
 
     private int id;
