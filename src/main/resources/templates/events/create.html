@@ -5,6 +5,8 @@
 
 <header th:replace="fragments :: header"></header>
 
+<p th:text="${errorMsg}" style="color:red;"></p>
+
 <form method="post">
     <div class="form-group">
         <label>Name
@@ -23,6 +25,30 @@
             <input th:field="${event.contactEmail}" class="form-control">
         </label>
         <p class="error" th:errors="${event.contactEmail}"></p>
+    </div>
+    <div class="form-group">
+        <label>Location
+            <input th:field="${event.location}" class="form-control">
+        </label>
+        <p class="error" th:errors="${event.location}"></p>
+    </div>
+    <div class="form-group">
+        <label>Should the Attendees register?
+            <input type="checkbox" th:field="${event.shouldRegister}" class="form-control">
+        </label>
+        <p class="error" th:errors="${event.shouldRegister}"></p>
+    </div>
+    <div class="form-group">
+        <label>Number of Attendees
+            <input th:field="${event.numOfAttendees}" class="form-control">
+        </label>
+        <p class="error" th:errors="${event.numOfAttendees}"></p>
+    </div>
+    <div class="form-group">
+        <label>Open Bar Coupons
+            <input th:field="${event.openBar}" class="form-control">
+        </label>
+        <p class="error" th:errors="${event.openBar}"></p>
     </div>
     <div class="form-group">
         <input type="submit" value="Create" class="btn btn-success">

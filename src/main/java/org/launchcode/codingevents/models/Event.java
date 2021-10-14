@@ -1,8 +1,6 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 /**
@@ -13,22 +11,40 @@ public class Event {
     private int id;
     private static int nextId = 1;
 
-    @NotBlank(message = "Name is required")
+    @NotBlank
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
     private String name;
 
     @Size(max = 500, message = "Description too long!")
     private String description;
 
-    @NotBlank(message = "Email is required")
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
-    public Event(String name, String description, String contactEmail) {
+    @NotNull(message = "Location is required.")
+    @NotBlank(message = "Location is required.")
+    private String location;
+
+    @AssertTrue(message = "This event must have attendees register.")
+    private boolean shouldRegister = true;
+
+    @NotNull(message = "At least one attendee is required.")
+    @Min(value = 1, message = "At least one attendee is required.")
+    private Integer numOfAttendees;
+
+    @NotNull(message = "must have # of drinks between 1 and 3.")
+    @Min(value = 1, message = "must have # of drinks between 1 and 3.")
+    @Max(value = 3, message = "must have # of drinks between 1 and 3.")
+    private Integer openBar;
+
+    public Event(String name, String description, String contactEmail, String location, Boolean shouldRegister, Integer numOfAttendees) {
         this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
+        this.location = location;
+        this.shouldRegister = shouldRegister;
+        this.numOfAttendees = numOfAttendees;
     }
 
     public Event() {
@@ -62,6 +78,38 @@ public class Event {
 
     public int getId() {
         return id;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public boolean isShouldRegister() {
+        return shouldRegister;
+    }
+
+    public void setShouldRegister(boolean shouldRegister) {
+        this.shouldRegister = shouldRegister;
+    }
+
+    public Integer getNumOfAttendees() {
+        return numOfAttendees;
+    }
+
+    public void setNumOfAttendees(Integer numOfAttendees) {
+        this.numOfAttendees = numOfAttendees;
+    }
+
+    public Integer getOpenBar() {
+        return openBar;
+    }
+
+    public void setOpenBar(Integer openBar) {
+        this.openBar = openBar;
     }
 
     @Override
